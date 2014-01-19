@@ -64,12 +64,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>net.cubespace</groupId>
-            <artifactId>the-suit-core</artifactId>
-            <version>0.1.0</version>
-        </dependency>
-    </dependencies>
 </project>
