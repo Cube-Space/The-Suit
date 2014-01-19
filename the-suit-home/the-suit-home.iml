@@ -11,7 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: net.cubespace:BungeeLib:1.5.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: net.cubespace:BungeeLib:1.5.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: net.md-5:bungeecord-parent:1.7.2" level="project" />
     <orderEntry type="library" name="Maven: net.cubespace:Yamler:1.0.4-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: com.iKeirNez:PluginMessageApiPlus:1.1-SNAPSHOT" level="project" />
