@@ -1,6 +1,6 @@
 package net.cubespace.thesuit.Core.Config;
 
-import net.cubespace.lib.Configuration.Config;
+import net.cubespace.Yamler.Config.Config;
 import net.cubespace.lib.CubespacePlugin;
 
 import java.io.File;
@@ -11,7 +11,7 @@ import java.io.File;
 public class Database extends Config {
     public Database(CubespacePlugin plugin) {
         CONFIG_FILE = new File(plugin.getDataFolder(), "database.yml");
-        CONFIG_HEADER = "Configuration of the Database";
+        CONFIG_HEADER = new String[]{"Configuration of the Database"};
     }
 
     public String Url = "";
