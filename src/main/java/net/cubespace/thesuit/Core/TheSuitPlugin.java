@@ -15,7 +15,7 @@ import java.sql.SQLException;
  * @author geNAZt (fabian.fassbender42@googlemail.com)
  */
 public class TheSuitPlugin extends CubespacePlugin {
-    private Database database;
+    protected Database database;
 
     public void onEnable() {
         //Init the config
@@ -44,9 +44,5 @@ public class TheSuitPlugin extends CubespacePlugin {
         //Enable the Module and tell the Library we are ready to go
         getModuleManager().enable();
         super.onEnable();
-    }
-
-    public Database getDatabase() {
-        return database;
     }
 }
