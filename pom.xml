@@ -24,8 +24,14 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>cubespace-releases</id>
+            <url>http://nexus.cube-space.net/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
     </repositories>
-
 
     <dependencies>
         <dependency>
