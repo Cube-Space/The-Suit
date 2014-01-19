@@ -65,31 +65,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>net.cubespace</groupId>
-            <artifactId>the-suit-ban</artifactId>
-            <version>0.1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.cubespace</groupId>
-            <artifactId>the-suit-home</artifactId>
-            <version>0.1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.cubespace</groupId>
-            <artifactId>the-suit-teleport</artifactId>
-            <version>0.1.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.cubespace</groupId>
-            <artifactId>the-suit-warp</artifactId>
-            <version>0.1.0</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 </project>
