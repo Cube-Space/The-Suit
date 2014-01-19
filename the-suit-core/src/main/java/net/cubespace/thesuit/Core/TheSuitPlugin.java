@@ -4,11 +4,8 @@ import com.j256.ormlite.dao.DaoManager;
 import net.cubespace.lib.CubespacePlugin;
 import net.cubespace.lib.Database.Database;
 import net.cubespace.thesuit.Core.Database.Player;
-import net.cubespace.thesuit.ban.TheSuitBanModule;
-import net.cubespace.thesuit.home.TheSuitHomeModule;
-import net.cubespace.thesuit.teleport.TheSuitTeleportModule;
-import net.cubespace.thesuit.warp.TheSuitWarpModule;
 
+import java.io.File;
 import java.sql.SQLException;
 
 /**
@@ -36,13 +33,15 @@ public class TheSuitPlugin extends CubespacePlugin {
         }
 
         //Init all Submodules
-        getModuleManager().registerModule(new TheSuitBanModule(this));
-        getModuleManager().registerModule(new TheSuitHomeModule(this));
-        getModuleManager().registerModule(new TheSuitTeleportModule(this));
-        getModuleManager().registerModule(new TheSuitWarpModule(this));
+        File moduleFolder = new File(getDataFolder(), "modules");
+        if(!moduleFolder.exists()) {
+            moduleFolder.mkdirs();
+        }
 
-        //Enable the Module and tell the Library we are ready to go
-        getModuleManager().enable();
+        getModuleManager().detectModules(moduleFolder);
+        getModuleManager().loadAndEnableModules();
+
+        //Tell the Library we are ready to go
         super.onEnable();
     }
 }
