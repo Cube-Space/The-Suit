@@ -14,7 +14,7 @@ public class Database extends Config {
         CONFIG_HEADER = new String[]{"Configuration of the Database"};
     }
 
-    public String Url = "";
-    public String Username = "";
-    public String Password = "";
+    public String Url = "jdbc:sqlite:{DIR}thesuit.db";
+    public String Username = "test";
+    public String Password = "test";
 }

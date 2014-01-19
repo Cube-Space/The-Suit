@@ -14,6 +14,7 @@
         <module>the-suit-teleport</module>
         <module>the-suit-home</module>
         <module>the-suit-warp</module>
+        <module>the-suit-core</module>
     </modules>
 
     <repositories>
