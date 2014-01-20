@@ -19,7 +19,7 @@ public class TheSuitPlugin extends CubespacePlugin {
         net.cubespace.thesuit.Core.Config.Database dbConfig = getConfigManager().getConfig("database");
 
         //Init the Database Connection
-        database = new Database(this, dbConfig.Url, dbConfig.Username, dbConfig.Password);
+        database = new Database(this, dbConfig.getUrl(), dbConfig.getUsername(), dbConfig.getPassword());
 
         //Register the Core Entities
         try {
