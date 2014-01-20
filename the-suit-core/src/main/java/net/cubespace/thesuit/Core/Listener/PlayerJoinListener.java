@@ -39,12 +39,12 @@ public class PlayerJoinListener implements Listener {
                     if(FeatureDetector.canUseUUID()) {
                         player = playerWhere.eq("uuid", event.getPlayer().getUUID()).queryForFirst();
                     } else {
-                        player = playerWhere.eq("name", event.getPlayer().getName()).queryForFirst();
+                        player = playerWhere.eq("name", event.getPlayer().getName().toLowerCase()).queryForFirst();
                     }
 
                     if (player == null) {
                         Player newPlayer = new Player();
-                        newPlayer.setName(event.getPlayer().getName());
+                        newPlayer.setName(event.getPlayer().getName().toLowerCase());
                         newPlayer.setIp(event.getPlayer().getAddress().getAddress().toString());
 
                         if(FeatureDetector.canUseUUID()) {
