@@ -34,7 +34,7 @@ public class PlayerJoinListener implements Listener {
                     Dao<Player, Integer> playerDao = plugin.getDatabase().getDAO(Player.class);
                     Player player;
 
-                    if(FeatureDetector.isUseUUID()) {
+                    if(FeatureDetector.canUseUUID()) {
                         player = playerDao.queryBuilder().where().eq("uuid", event.getPlayer().getUUID()).queryForFirst();
                         if (player == null) {
                             Player newPlayer = new Player();

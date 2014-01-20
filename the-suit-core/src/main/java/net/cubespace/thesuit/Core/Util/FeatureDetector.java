@@ -21,7 +21,7 @@ public class FeatureDetector {
      * Either or not the Player Object has an UUID (UUIDs only work in 1.7+)
      * @return false when not, true when it has
      */
-    public static boolean isUseUUID() {
+    public static boolean canUseUUID() {
         return useUUID;
     }
 }
