@@ -4,6 +4,7 @@ import com.j256.ormlite.dao.DaoManager;
 import net.cubespace.lib.CubespacePlugin;
 import net.cubespace.lib.Database.Database;
 import net.cubespace.thesuit.Core.Database.Player;
+import net.cubespace.thesuit.Core.Listener.PlayerJoinListener;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -12,8 +13,6 @@ import java.sql.SQLException;
  * @author geNAZt (fabian.fassbender42@googlemail.com)
  */
 public class TheSuitPlugin extends CubespacePlugin {
-    protected Database database;
-
     public void onEnable() {
         //Init the config
         getConfigManager().initConfig("database", new net.cubespace.thesuit.Core.Config.Database(this));
@@ -31,6 +30,8 @@ public class TheSuitPlugin extends CubespacePlugin {
             //TODO Find a better way to unload the Plugin
             return;
         }
+
+        getProxy().getPluginManager().registerListener(this, new PlayerJoinListener(this));
 
         //Init all Submodules
         File moduleFolder = new File(getDataFolder(), "modules");

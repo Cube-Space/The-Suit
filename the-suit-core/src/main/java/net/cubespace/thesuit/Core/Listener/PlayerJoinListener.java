@@ -3,6 +3,7 @@ package net.cubespace.thesuit.Core.Listener;
 import com.j256.ormlite.dao.Dao;
 import net.cubespace.thesuit.Core.Database.Player;
 import net.cubespace.thesuit.Core.TheSuitPlugin;
+import net.cubespace.thesuit.Core.Util.FeatureDetector;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -31,15 +32,30 @@ public class PlayerJoinListener implements Listener {
             public void run() {
                 try {
                     Dao<Player, Integer> playerDao = plugin.getDatabase().getDAO(Player.class);
-                    Player player = playerDao.queryBuilder().where().eq("uuid", event.getPlayer().getUUID()).queryForFirst();
-                    if (player == null) {
-                        Player newPlayer = new Player();
-                        newPlayer.setName(event.getPlayer().getName());
-                        newPlayer.setUuid(event.getPlayer().getUUID());
+                    Player player;
 
-                        def.resolve(playerDao.create(newPlayer));
+                    if(FeatureDetector.isUseUUID()) {
+                        player = playerDao.queryBuilder().where().eq("uuid", event.getPlayer().getUUID()).queryForFirst();
+                        if (player == null) {
+                            Player newPlayer = new Player();
+                            newPlayer.setName(event.getPlayer().getName());
+                            newPlayer.setUuid(event.getPlayer().getUUID());
+
+                            def.resolve(playerDao.create(newPlayer));
+                        } else {
+                            def.resolve(player.getId());
+                        }
                     } else {
-                        def.resolve(player.getId());
+                        player = playerDao.queryBuilder().where().eq("name", event.getPlayer().getName()).queryForFirst();
+                        if (player == null) {
+                            Player newPlayer = new Player();
+                            newPlayer.setName(event.getPlayer().getName());
+                            newPlayer.setUuid("");
+
+                            def.resolve(playerDao.create(newPlayer));
+                        } else {
+                            def.resolve(player.getId());
+                        }
                     }
                 } catch (SQLException ex) {
                     def.reject(ex);
