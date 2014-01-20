@@ -45,4 +45,8 @@ public class TheSuitPlugin extends CubespacePlugin {
         //Tell the Library we are ready to go
         super.onEnable();
     }
+
+    public void onDisable() {
+        getModuleManager().disableModules();
+    }
 }
