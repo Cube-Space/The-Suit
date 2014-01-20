@@ -14,6 +14,8 @@ public class Player {
     private String name;
     @DatabaseField(canBeNull = true)
     private String uuid;
+    @DatabaseField(canBeNull = false)
+    private String ip;
 
     public Integer getId() {
         return id;
@@ -37,5 +39,13 @@ public class Player {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 }
