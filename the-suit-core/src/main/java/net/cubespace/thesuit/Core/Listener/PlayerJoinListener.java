@@ -2,8 +2,8 @@ package net.cubespace.thesuit.Core.Listener;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.Where;
+import net.cubespace.lib.CubespacePlugin;
 import net.cubespace.thesuit.Core.Database.Player;
-import net.cubespace.thesuit.Core.TheSuitPlugin;
 import net.cubespace.thesuit.Core.Util.FeatureDetector;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -20,15 +20,15 @@ import java.sql.SQLException;
  * @author geNAZt (fabian.fassbender42@googlemail.com)
  */
 public class PlayerJoinListener implements Listener {
-    private TheSuitPlugin plugin;
+    private CubespacePlugin plugin;
 
-    public PlayerJoinListener(TheSuitPlugin plugin) {
+    public PlayerJoinListener(CubespacePlugin plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerJoin(final PostLoginEvent event) {
-        final Deferred<Integer, Exception, Void> def = new DeferredObject();
+        final Deferred<Integer, Exception, Void> def = new DeferredObject<>();
         plugin.getProxy().getScheduler().runAsync(plugin, new Runnable() {
             public void run() {
                 try {

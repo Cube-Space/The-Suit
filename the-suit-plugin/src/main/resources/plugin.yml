@@ -1,0 +1,4 @@
+name: TheSuit
+main : net.cubespace.thesuit.Plugin.TheSuitPlugin
+version: ${version}
+author: geNAZt

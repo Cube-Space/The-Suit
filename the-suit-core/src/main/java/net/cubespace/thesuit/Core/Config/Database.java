@@ -5,9 +5,6 @@ import lombok.Setter;
 import net.cubespace.Yamler.Config.Comment;
 import net.cubespace.Yamler.Config.Comments;
 import net.cubespace.Yamler.Config.Config;
-import net.cubespace.lib.CubespacePlugin;
-
-import java.io.File;
 
 /**
  * @author geNAZt (fabian.fassbender42@googlemail.com)
@@ -15,8 +12,7 @@ import java.io.File;
 @Getter
 @Setter
 public class Database extends Config {
-    public Database(CubespacePlugin plugin) {
-        CONFIG_FILE = new File(plugin.getDataFolder(), "database.yml");
+    public Database() {
         CONFIG_HEADER = new String[]{"Configuration of the Database"};
     }
 

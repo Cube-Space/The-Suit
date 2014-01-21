@@ -1,0 +1,4 @@
+name: TheSuitCore
+main : net.cubespace.thesuit.Core.TheSuitCoreModule
+version: ${version}
+author: geNAZt

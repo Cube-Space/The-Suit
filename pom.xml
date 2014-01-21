@@ -15,6 +15,7 @@
         <module>the-suit-home</module>
         <module>the-suit-warp</module>
         <module>the-suit-core</module>
+        <module>the-suit-plugin</module>
     </modules>
 
     <properties>
@@ -42,7 +43,7 @@
         <dependency>
             <groupId>net.cubespace</groupId>
             <artifactId>BungeeLib</artifactId>
-            <version>1.10.0-SNAPSHOT</version>
+            <version>1.11.3-SNAPSHOT</version>
         </dependency>
 
         <dependency>

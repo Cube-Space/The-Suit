@@ -2,6 +2,7 @@ package net.cubespace.thesuit.teleport.PluginMessage;
 
 import com.iKeirNez.PluginMessageApiPlus.PacketWriter;
 import com.iKeirNez.PluginMessageApiPlus.StandardPacket;
+import lombok.Getter;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.io.IOException;
 /**
  * @author geNAZt (fabian.fassbender42@googlemail.com)
  */
+@Getter
 public class TeleportMessage extends StandardPacket {
     private String world;
     private Double x;
@@ -20,22 +22,6 @@ public class TeleportMessage extends StandardPacket {
         this.x = x;
         this.y = y;
         this.z = z;
-    }
-
-    public String getWorld() {
-        return world;
-    }
-
-    public Double getX() {
-        return x;
-    }
-
-    public Double getY() {
-        return y;
-    }
-
-    public Double getZ() {
-        return z;
     }
 
     @Override
