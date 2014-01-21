@@ -20,11 +20,6 @@ public class TheSuitCoreModule extends Module {
 
     @Override
     public void onLoad() {
-
-    }
-
-    @Override
-    public void onEnable() {
         //Expose the Database config to the Module
         getConfigManager().registerConfig("database", net.cubespace.thesuit.Core.Config.Database.class);
 
@@ -33,7 +28,10 @@ public class TheSuitCoreModule extends Module {
 
         //Init the Database Connection
         database = new Database(plugin, dbConfig.getUrl(), dbConfig.getUsername(), dbConfig.getPassword());
+    }
 
+    @Override
+    public void onEnable() {
         //Register the Core Entities
         try {
             database.registerDAO(DaoManager.createDao(database.getConnectionSource(), Player.class), Player.class);
