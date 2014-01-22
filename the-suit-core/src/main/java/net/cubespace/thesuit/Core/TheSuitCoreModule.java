@@ -56,5 +56,11 @@ public class TheSuitCoreModule extends Module {
         } catch (InvalidConfigurationException e) {
             getModuleLogger().warn("Could not save DB Config", e);
         }
+
+        try {
+            database.getConnectionSource().close();
+        } catch (SQLException e) {
+            getModuleLogger().warn("Could not close JDBC Pool", e);
+        }
     }
 }
