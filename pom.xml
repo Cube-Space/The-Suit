@@ -11,6 +11,11 @@
 
     <modules>
         <module>TheSuitTeleport</module>
+        <module>TheSuitBan</module>
+        <module>TheSuitCore</module>
+        <module>TheSuitHome</module>
+        <module>TheSuitPlugin</module>
+        <module>TheSuitWarp</module>
     </modules>
 
     <properties>
