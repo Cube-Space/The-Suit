@@ -1,4 +1,4 @@
-package net.cubespace.thesuit.teleport.PluginMessage;
+package net.cubespace.thesuit.Teleport.PluginMessage;
 
 import com.iKeirNez.PluginMessageApiPlus.PacketWriter;
 import com.iKeirNez.PluginMessageApiPlus.StandardPacket;

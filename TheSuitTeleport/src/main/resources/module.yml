@@ -1,0 +1,4 @@
+name: TheSuitTeleport
+main : net.cubespace.thesuit.Teleport.TheSuitTeleportModule
+version: ${version}
+author: geNAZt

@@ -5,17 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.cubespace</groupId>
-    <artifactId>The-Suit-parent</artifactId>
+    <artifactId>TheSuit-parent</artifactId>
     <version>0.1.0</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>the-suit-ban</module>
-        <module>the-suit-teleport</module>
-        <module>the-suit-home</module>
-        <module>the-suit-warp</module>
-        <module>the-suit-core</module>
-        <module>the-suit-plugin</module>
+        <module>TheSuitTeleport</module>
     </modules>
 
     <properties>

@@ -1,7 +1,7 @@
-package net.cubespace.thesuit.teleport;
+package net.cubespace.thesuit.Teleport;
 
 import net.cubespace.lib.Module.Module;
-import net.cubespace.thesuit.teleport.PluginMessage.TeleportMessage;
+import net.cubespace.thesuit.Teleport.PluginMessage.TeleportMessage;
 
 /**
  * @author geNAZt (fabian.fassbender42@googlemail.com)
