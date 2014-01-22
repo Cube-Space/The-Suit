@@ -1,6 +1,9 @@
 package net.cubespace.thesuit.Plugin;
 
 import net.cubespace.lib.CubespacePlugin;
+import net.cubespace.thesuit.Plugin.Command.Binder.Binder;
+import net.cubespace.thesuit.Plugin.Command.TSCommand;
+import net.cubespace.thesuit.Plugin.Config.Messages;
 
 import java.io.File;
 
@@ -11,6 +14,16 @@ public class TheSuitPlugin extends CubespacePlugin {
     public void onEnable() {
         //Set basic things for the Module Manager
         getModuleManager().setModuleSpace("the-suit");
+
+        //Init Permission System
+        getPermissionManager().setup("thesuit.");
+
+        //Register the message Config
+        getConfigManager().initConfig("messages", new Messages(this));
+
+        //Register the ts command
+        getBindManager().bind("ts:reloadModule", Binder.class);
+        getCommandExecutor().add(null, new TSCommand(this));
 
         //Init all Submodules
         File moduleFolder = new File(getDataFolder(), "modules");
