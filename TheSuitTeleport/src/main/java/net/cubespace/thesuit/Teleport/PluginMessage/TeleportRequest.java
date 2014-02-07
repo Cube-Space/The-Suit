@@ -2,30 +2,33 @@ package net.cubespace.thesuit.Teleport.PluginMessage;
 
 import com.iKeirNez.PluginMessageApiPlus.PacketWriter;
 import com.iKeirNez.PluginMessageApiPlus.StandardPacket;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * @author geNAZt (fabian.fassbender42@googlemail.com)
  */
-@Getter
-public class TeleportMessage extends StandardPacket {
+@Data
+@EqualsAndHashCode(callSuper = false)
+@AllArgsConstructor
+@NoArgsConstructor
+public class TeleportRequest extends StandardPacket {
+    private UUID deferredUUID;
     private String world;
     private Double x;
     private Double y;
     private Double z;
 
-    public TeleportMessage(String world, Double x, Double y, Double z) {
-        this.world = world;
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
     @Override
     protected void handle(DataInputStream dataInputStream) throws IOException {
+        deferredUUID = UUID.fromString(dataInputStream.readUTF());
         world = dataInputStream.readUTF();
         x = dataInputStream.readDouble();
         y = dataInputStream.readDouble();
@@ -35,6 +38,7 @@ public class TeleportMessage extends StandardPacket {
     @Override
     protected PacketWriter write() throws IOException {
         PacketWriter packetWriter = new PacketWriter(this);
+        packetWriter.writeUTF(deferredUUID.toString());
         packetWriter.writeUTF(world);
         packetWriter.writeDouble(x);
         packetWriter.writeDouble(y);
