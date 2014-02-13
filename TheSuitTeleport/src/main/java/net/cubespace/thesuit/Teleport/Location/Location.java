@@ -19,4 +19,16 @@ public class Location {
     private Double x;
     private Double y;
     private Double z;
+
+    public void setX(int x) {
+        this.x = (double) x;
+    }
+
+    public void setY(int y) {
+        this.y = (double) y;
+    }
+
+    public void setZ(int z) {
+        this.z = (double) z;
+    }
 }

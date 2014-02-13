@@ -22,7 +22,7 @@ import org.jdeferred.FailCallback;
 public class TPCommand implements CLICommand {
     private TheSuitTeleportModule module;
 
-    @Command(arguments = 1, command = "tp")
+    @Command(arguments = 0, command = "tp")
     public void tpCommand(final CommandSender sender, String[] args) {
         //Get the message Config
         final TheSuitTeleportMessages messages = module.getConfigManager().getConfig("messages");
@@ -31,6 +31,17 @@ public class TPCommand implements CLICommand {
         if (!(sender instanceof ProxiedPlayer)) {
             MessageBuilder messageBuilder = new MessageBuilder();
             messageBuilder.setText(FontFormat.translateString(messages.getCommand_TP_NotPlayer())).send(sender);
+            return;
+        }
+
+        final ProxiedPlayer send = (ProxiedPlayer) sender;
+
+        //Check if none argument is given => Help
+        if (args.length == 0) {
+            MessageBuilder messageBuilder = new MessageBuilder();
+            messageBuilder.setText(FontFormat.translateString(messages.getCommand_TP_Help_Player())).send(sender);
+            messageBuilder.setText(FontFormat.translateString(messages.getCommand_TP_Help_Location())).send(sender);
+
             return;
         }
 
@@ -49,7 +60,7 @@ public class TPCommand implements CLICommand {
             locationDeferred.done(new DoneCallback<Location>() {
                 @Override
                 public void onDone(Location location) {
-                    Deferred<Boolean, Throwable, Void> teleportDeferred = module.teleport((ProxiedPlayer) sender, location);
+                    Deferred<Boolean, Throwable, Void> teleportDeferred = module.teleport(send, location);
                     teleportDeferred.done(new DoneCallback<Boolean>() {
                         @Override
                         public void onDone(Boolean aBoolean) {
@@ -80,7 +91,61 @@ public class TPCommand implements CLICommand {
                 public void onFail(Throwable throwable) {
                     module.getModuleLogger().warn("Could not get Players Position", throwable);
                     MessageBuilder messageBuilder = new MessageBuilder();
-                    messageBuilder.setText(messages.getCommand_TP_NoPermissionForPlayerTP()).send(sender);
+                    messageBuilder.setText(messages.getCommand_TP_NotTeleported()).send(sender);
+                }
+            });
+
+            return;
+        }
+
+        //Check if arguments are coordinates
+        if (args.length == 3) {
+            final int x = Integer.valueOf(args[0]);
+            final int y = Integer.valueOf(args[1]);
+            final int z = Integer.valueOf(args[2]);
+
+            //Get Players location
+            Deferred<Location, Throwable, Void> locationDeferred = module.getPosition(send);
+            locationDeferred.done(new DoneCallback<Location>() {
+                @Override
+                public void onDone(Location location) {
+                    location.setX(x);
+                    location.setY(y);
+                    location.setZ(z);
+
+                    Deferred<Boolean, Throwable, Void> teleportDeferred = module.teleport((ProxiedPlayer) sender, location);
+                    teleportDeferred.done(new DoneCallback<Boolean>() {
+                        @Override
+                        public void onDone(Boolean aBoolean) {
+                            if(aBoolean) {
+                                MessageBuilder messageBuilder = new MessageBuilder();
+                                messageBuilder.setText(FontFormat.translateString(messages.getCommand_TP_ToLocationTeleportSuccess())).
+                                        setVariable("x", String.valueOf(x)).setVariable("y", String.valueOf(y)).setVariable("z", String.valueOf(z)).send(sender);
+                            } else {
+                                MessageBuilder messageBuilder = new MessageBuilder();
+                                messageBuilder.setText(FontFormat.translateString(messages.getCommand_TP_NotTeleported())).send(sender);
+                                module.getModuleLogger().warn("Player could not be teleported. Bukkit returned false");
+                            }
+                        }
+                    });
+
+                    teleportDeferred.fail(new FailCallback<Throwable>() {
+                        @Override
+                        public void onFail(Throwable throwable) {
+                            MessageBuilder messageBuilder = new MessageBuilder();
+                            messageBuilder.setText(FontFormat.translateString(messages.getCommand_TP_NotTeleported())).send(sender);
+                            module.getModuleLogger().warn("Player could not be teleported.", throwable);
+                        }
+                    });
+                }
+            });
+
+            locationDeferred.fail(new FailCallback<Throwable>() {
+                @Override
+                public void onFail(Throwable throwable) {
+                    module.getModuleLogger().warn("Could not get Players Position", throwable);
+                    MessageBuilder messageBuilder = new MessageBuilder();
+                    messageBuilder.setText(messages.getCommand_TP_NotTeleported()).send(sender);
                 }
             });
         }
